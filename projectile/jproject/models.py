@@ -4,12 +4,12 @@
 import datetime
 from django.db import models
 from django.db.models import permalink
-
 from django.template.defaultfilters import slugify
-
 from django.contrib.auth.models import User
 
 from treebeard.mp_tree import MP_Node
+
+from projectile.baseapp.utils import lang_stub as _
 from projectile.consumers.models import ConsumerProfile as CustomUser
 
 
@@ -18,7 +18,10 @@ class Project(models.Model):
         ('NON', 'no one'), ('ALL', 'all'),
         ('USR', 'user'), ('SUS', 'selected users'))
 
-    owner = models.ForeignKey(CustomUser)
+    owner = models.ForeignKey(CustomUser,
+        related_name='owner')
+    creator = models.ForeignKey(CustomUser,
+        related_name='creator')
 
     name = models.CharField(
         max_length=225,
@@ -55,9 +58,9 @@ class Project(models.Model):
         verbose_name='активность',
         help_text='false запрещает создание новых данных')
 
-    users = models.ManyToManyField(CustomUser,
-        related_name='prj_users',
-        null=True, blank=True,)
+#    users = models.ManyToManyField(CustomUser,
+#        related_name='prj_users',
+#        null=True, blank=True,)
 
 
     def __unicode__(self):
@@ -73,8 +76,33 @@ class Project(models.Model):
         self.datetime_modifed = datetime.datetime.now()
         if self.name_slug is None:
             self.name_slug = slugify(self.name)
-
         super(Project, self).save(*args, **kwargs)
+
+
+class ProjectUsers(models.Model):
+    """
+    project users
+    """
+    USER_TYPE = (
+            ('DEV', _('developer')), ('REP', _('reporter')), ('VIW', _('viewer')),
+            ('TST', _('tester')), ('REP', _('reporter')),
+    )
+    project = models.ForeignKey(Project,
+        verbose_name=_('Project'),)
+    user = models.ForeignKey(User,
+        verbose_name=_('User'))
+    user_type = models.CharField(
+        max_length=3,
+        choices=USER_TYPE,
+        verbose_name=_('User type'),
+    )
+
+    def __unicode__(self):
+        return u'%s - %s [%s]' % (self.project, self.user, self.user_type)
+
+    class Meta:
+        verbose_name = _('Project user')
+        verbose_name_plural= _('Project users')
 
 
 class Component(models.Model):

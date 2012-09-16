@@ -169,11 +169,11 @@ def phone_validate_util(function):
     return new
 
 def phone_formater(r_str):
-    '''
+    """
     форматирует телефон
     удаляет всё не цифровое
     отдаёт только 10 первых цифр
-    '''
+    """
 
     string = re.sub(r"\D", '', r_str)
     string = string.encode()
@@ -185,10 +185,10 @@ def phone_formater(r_str):
 
 
 def timeit(method):
-    '''
+    """
     декоратор принтит время выполнния метода
     !!! не использовать в продакшене, или переписать принт !!!
-    '''
+    """
     def timed(*args, **kw):
         ts = time.time()
         result = method(*args, **kw)
@@ -201,11 +201,11 @@ def timeit(method):
 
 
 def cleanup_util(r_str):
-    '''
+    """
     очищает строку от всего лишнего
     нужно для поиска
     работает с кириллицей
-    '''
+    """
     return re.sub(ur'[^а-яa-z0-9]', u'', r_str.lower(), re.UNICODE)
 
 def lang_stub(text=''):

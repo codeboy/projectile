@@ -19,7 +19,7 @@ class Task(MP_Node):
         ('NON', 'no one'), ('ALL', 'all'),
         ('USR', 'user executive'), ('SUS', 'selected users'))
 
-    TYPES_CHOICES = (('BUG', u'Баг'), ('ENC', u'Улучшение'), ('TAS', u'Задача'),)
+#    TYPES_CHOICES = (('BUG', u'Баг'), ('ENC', u'Улучшение'), ('TAS', u'Задача'),)
     PRIORITIES_CHOICES = (('BLK', u'Блокирующе'), ('CRT', u'Критично'), ('MAJ', u'Важно'), ('NRM', u'Средне'),
         ('MDL', u'Слабое'), ('LOW', u'Низкое'))
 
@@ -39,15 +39,13 @@ class Task(MP_Node):
         verbose_name='Короткое название',
         help_text='короткое название для URL, даётся автоматом, но можно изменять',)
 
-    type = models.CharField(
-        max_length=3,
-        choices=TYPES_CHOICES)
+    type = models.ForeignKey('TaskType',
+        verbose_name=_('Task type'))
+    status = models.ForeignKey(StatusItem,
+        verbose_name=_('Current status'))
     priority = models.CharField(
         max_length=3,
         choices=PRIORITIES_CHOICES)
-    status = models.CharField(
-        max_length=3,
-        choices=STATUS_CHOICES)
 
     time_required_int = models.PositiveSmallIntegerField(
         null=True, blank=True,
@@ -95,8 +93,6 @@ class Task(MP_Node):
         related_name='task_users',
         null=True, blank=True,)
 
-
-
     def __unicode__(self):
         return self.name
 
@@ -114,7 +110,9 @@ class Task(MP_Node):
 
 
 class TaskStates(models.Model):
-
+    """
+    states changes
+    """
     description = models.TextField(
         null=True, blank=True,
         verbose_name='Короткое описание',
@@ -129,9 +127,73 @@ class TaskStates(models.Model):
 #        return self.name
 
     class Meta:
-        verbose_name = 'Task state'
-        verbose_name_plural= 'Task states'
+        verbose_name = _('Task state')
+        verbose_name_plural= _('Task states')
 
     def save(self, *args, **kwargs):
         self.datetime_modified = datetime.datetime.now()
         super(TaskStates, self).save(*args, **kwargs)
+
+
+
+class TaskType(models.Model):
+    """
+    set of statuses
+    """
+    project = models.ForeignKey(Project,
+        verbose_name=_('Project'),)
+    name = models.CharField(
+        max_length=225,
+        verbose_name=_('Name'),
+        help_text=_('set name'),
+        unique=True,)
+    name_slug = models.SlugField(
+        max_length=250,
+        unique=True,
+        verbose_name=_('Short name'),
+        help_text=_('short name for URL'),)
+    statuses = models.ManyToManyField('TaskStatusItem',
+                verbose_name=_('list of statuses'))
+
+    class Meta:
+        verbose_name = _('Task status')
+        verbose_name_plural = _('Task statuses')
+
+    def save(self, *args, **kwargs):
+        if self.name_slug is None:
+            self.name_slug = slugify(self.name)
+        super(TaskType, self).save(*args, **kwargs)
+
+
+class TypeStatusesOrder(models.Model):
+    """
+    order for statuses
+    """
+
+
+class StatusItem(models.Model):
+    """
+    task statuses
+    """
+    name = models.CharField(
+        max_length=225,
+        verbose_name=_('Name'),
+        help_text=_('status name'),
+        unique=True,)
+    name_slug = models.SlugField(
+        max_length=250,
+        unique=True,
+        verbose_name=_('Short name'),
+        help_text=_('short name for URL'),)
+
+    type = models.CharField(
+        max_length=3,)
+
+    class Meta:
+        verbose_name = _('Task status')
+        verbose_name_plural= _('Task statuses')
+
+    def save(self, *args, **kwargs):
+        if self.name_slug is None:
+            self.name_slug = slugify(self.name)
+        super(StatusItem, self).save(*args, **kwargs)
