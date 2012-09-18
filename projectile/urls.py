@@ -11,6 +11,12 @@ def bad(request):
     """ Simulates a server error """
     1 / 0
 
+
+from projectile.baseapp.test_api import TestApi
+api = TestApi()
+from projectile.jproject.api_project import ProjectApi
+project_api = ProjectApi()
+
 urlpatterns = patterns('',
     (r'', include('projectile.baseapp.urls', namespace='base')),
     (r'^admin/doc/', include('django.contrib.admindocs.urls')),
@@ -18,7 +24,12 @@ urlpatterns = patterns('',
     #url(r'^', include('debug_toolbar_user_panel.urls')),
     (r'^bad/$', bad),
 
+    (r'^api-test/', include(api.urls)),
+    (r'^api-project/', include(project_api.urls)),
 )
+
+
+
 
 ## In DEBUG mode, serve media files through Django.
 if settings.DEBUG:

@@ -66,7 +66,11 @@ INSTALLED_APPS = [
     'south',
 
     # Application base, containing global templates.
+    'projectile.apidriver',
     'projectile.baseapp',
+    'projectile.consumers',
+    'projectile.jproject',
+    'projectile.jtask',
 
     # Local apps, referenced via REFERENCE_NAME.appname
 ]

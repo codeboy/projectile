@@ -2,6 +2,9 @@
 *   Custom styles
 *************************************************/
 
+
+/* REBUILD INHERITS
+******************************************************/
 #header h1 {
     height:35px;
     background: url("/static/img/logo2.png") no-repeat scroll 0 0 transparent;
@@ -58,4 +61,86 @@
 	background-image: -ms-linear-gradient(top, #333333 0%, #3F3F3F 100%);
 	background-image: -o-linear-gradient(top, #333333 0%, #3F3F3F 100%);
 	background-image: linear-gradient(top, #333333 0%, #3F3F3F 100%);
+}
+
+
+/* Loading indicator
+******************************************************/
+#loading-mask{
+    position:absolute;
+    left:0; top:0;
+    width:100%; height:100%;
+    z-index:20000;
+    background-color:gray;
+    filter:progid:DXImageTransform.Microsoft.Alpha(opacity=50); /* IE 5.5+*/
+    -moz-opacity: 0.5; /* Mozilla 1.6 и ниже */
+    -khtml-opacity: 0.5; /* Konqueror 3.1, Safari 1.1 */
+    opacity: 0.5; /* CSS3 - Mozilla 1.7b +, Firefox 0.9 +, Safari 1.2+, Opera 9+ */
+
+}
+#loading{
+    position:absolute;
+    left:45%; top:40%;
+    padding:2px;
+    z-index:20001;
+    height:auto;
+}
+#loading IMG {
+    margin-bottom:5px;
+}
+#loading H1 {font-size:30px; color:#ffffff;}
+#loading .loading-indicator{
+    /*background:gray;*/
+    color:#555;
+    font:bold 13px tahoma,arial,helvetica;
+    padding:10px;
+    margin:0;
+    text-align:center;
+    height:auto;
+}
+#loading .loading-indicator img {
+    width: 100px;
+    height: 100px;
+    margin-right:8px;
+}
+
+/* ALERT
+******************************************************/
+#alert-container {
+    position:absolute;
+    top:45px; right:15px;
+    z-index: 10000;
+    width:45%;
+}
+.alert {
+    width:90%;
+    padding-top:5px;
+    padding-bottom:5px;
+    margin-bottom:7px;
+}
+.alert H4 {font-size:14px;}
+.alert P {font-size:13px; margin-bottom:4px;}
+
+/* custom adds
+***********************************************/
+#user-nav .btn-info,
+#user-nav > ul > li.btn-quicktask,
+.navbar .nav > li.btn-quicktask,
+li.btn-quicktask {
+    margin-left:5px;
+    margin-right:5px;
+}
+.navbar .nav > li.btn-quicktask > A,
+.btn-quicktask A {
+    /*color:#c5c022;*/
+    font-weight:bold;
+}
+#user-nav > ul > li.btn-quicktask > a > i {
+    /*background-image:url("/static/img/glyphicons-halflings-green.png")*/
+    /*background-image:url("/static/img/glyphicons-halflings-orange.png")*/
+    /*background-image:url("/static/img/glyphicons-halflings-orange-light.png")*/
+    /*background-image:url("/static/img/glyphicons-halflings-blue-light.png")*/
+    /*background-image:url("/static/img/glyphicons-halflings-yellow.png")*/
+    background-image:url("/static/img/glyphicons-halflings-yellow-light.png")
+    /*background-image:url("/static/img/glyphicons-halflings-magenta-light.png")*/
 }

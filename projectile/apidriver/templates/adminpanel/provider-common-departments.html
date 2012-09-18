@@ -1,0 +1,33 @@
+<h1>{{ title }}</h1>
+
+<div id="departments_container">
+    {% if grid %}
+    <table class="table">
+        <thead>
+            <tr>
+                <th class="span2" colspan="2">Название</th>
+                <th class="span2 offset8"><a href="#"><i class="icon-plus-sign"></i> Добавить отдел</a></th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for i in grid %}
+            <tr>
+                <td class="span2" colspan="2">{{ i.name_full }}</td>
+                <td class="span2 offset8"><a href="#"><i class="icon-edit"></i> Редактировать</a><a href="#"><i class="icon-remove"></i> Удалить</a><a href="#"><i class="icon-plus-sign"></i> Добавить должность</a></td>
+            </tr>
+            {% if i.children %}
+                {% for child in i.children %}
+            <tr>
+                <td class="span1">&nbsp;</td>
+                <td class="span2">{{ child.name_full }}</td>
+                <td class="span2 offset7"><a href="#"><i class="icon-edit"></i> Редактировать</a><a href="#"><i class="icon-remove"></i> Удалить</a></td>
+             </tr>
+                {% endfor %}
+            {% endif %}
+        {% endfor %}
+        </tbody>
+    </table>
+    {% endif %}
+</div>
+
+

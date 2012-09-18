@@ -1,0 +1,22 @@
+{% extends "adminpanel/ap-base.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+
+<tr class="base">
+    <td colspan="2">
+        <div id="login" class="" style="width:200px; margin:100px 0 0 35%;">
+            {{ message }}
+            <form method="post" action="/ap/" class="form-horizontal">
+                {% csrf_token %}
+                {{ form|crispy }}
+                <input type="submit" value="Войти"/>
+
+            </form>
+        </div>
+
+    </td>
+</tr>
+
+{% endblock %}

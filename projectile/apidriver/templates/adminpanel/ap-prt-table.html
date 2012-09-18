@@ -1,0 +1,21 @@
+
+
+{% for i in list %}
+
+    <tr>
+        <td>{{ i.street }}</td>
+        <td>{{ i.number }}</td>
+    </tr>
+
+{% endfor %}
+
+<tr class="paging-row" data-page="{{ pagination.pag_current }}"><td colspan="1000">
+    <div style="float:left;">
+        <button class="btn btn-mini" type="button"><i class="icon-step-backward"></i></button>
+        <button class="btn-prevpage btn btn-mini" type="button"><i class="icon-arrow-left"></i></button>
+        страница <input type="text" value="{{ pagination.pag_current }}"> из {{ pagination.pag_pages }}
+        <button class="btn-nextpage btn btn-mini" type="button"><i class="icon-arrow-right"></i></button>
+        <button class="btn btn-mini" type="button"><i class="icon-step-forward"></i></button>
+    </div>
+    <div style="float:right; padding-right:20px;">всего записей: {{ count }}</div>
+</td></tr>

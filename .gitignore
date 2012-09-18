@@ -26,7 +26,8 @@ static/*
 .venv
 *.sqlite*
 .ropeproject/
-c300/gunicorn_dev.pid
 .project
 .pydevproject
 .settings/
+
+projectile/baseapp/static/img/icons/

@@ -1,0 +1,38 @@
+<div id="providers_container">
+    <table class="table">
+        <thead>
+            <tr>
+                <th class="span6">Имя</th>
+                <th class="span1">Тип орг-ции</th>
+                <th class="span1">Телефон</th>
+                <th class="span1">Email</th>
+                <th class="span1">Тариф</th>
+                <th class="span1"><a href="#"><i class="icon-plus-sign"></i> Добавить организацию</a></th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for provider in providers %}
+            <tr>
+            <td>
+                <a href="#">{{ provider.name }}</a></br>
+                юр.адрес: {{ provider.address_post }}</br>
+                факт.адрес: {{ provider.address_fact }}</br>
+            </td>
+            <td>{{ provider.organization_type}}</td>
+            <td>
+                {{ provider.phone }}{% if provider.phone_dop %}</br>{{ provider.phone_dop }}{% endif %}
+            </td>
+            <td>{{ provider.email }}</td>
+            <td>&nbsp;</td>
+            <td>
+                <span data-turl="providers/api/provider_departments_list/{{provider.id}}" class="clickable"><i class="icon-folder-open"></i>Отделы</span></br>
+                <a href="#"><i class="icon-user"></i>Работники</a></br>
+                <a href="#"><i class="icon-remove"></i> Удалить</a>
+            </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+

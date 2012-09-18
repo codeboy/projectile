@@ -5,6 +5,6 @@ from models import ConsumerProfile
 
 
 class ConsumerProfileAdmin(admin.ModelAdmin):
-    list_display = ['user', 'snils']
+    save_on_top = True
 
 admin.site.register(ConsumerProfile, ConsumerProfileAdmin)

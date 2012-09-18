@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block page_class %}home-page{% endblock %}
+{% block content %}
+
+{% if alert %}
+<div class="alert fade in alert-success">
+    <button class="close" data-dismiss="alert">×</button>
+    <span>{{ alert }}</span>
+</div>
+{% endif %}
+
+{% if user %}
+<div id="login" class="span7 offset5">
+    <div class="span7"><span>Добро пожаловать, {{user}}</span></div>
+    <div class="span2"><a class="btn" href="{% url consumers:logout %}">Выйти</a></div>
+    <div class="span2"><a class="btn" href="{% url consumers:reset_password %}">Сбросить пароль</a></div>
+</div>
+{% else %}
+<div id="login" class="span7 offset5">
+    <form method="post" action="{% url consumers:login %}">
+        {% csrf_token %}
+        <div class="span3"><label for="id_user_code">{{form.user_code.label}}</label></div>
+        <div class="span3">{{form.user_code}}</div>
+        <div class="span3"><label for="id_user_password">{{form.user_password.label}}</label></div>
+        <div class="span3">{{form.user_password}}</div>
+        <div class="span2 offset2"><input type="submit" value="Войти"/></div>
+        <div class="span7"><hr/></div>
+        <div class="span2"><a class="btn" href="{% url consumers:registration %}">Регистрация</a></div>
+        <div class="span2"><a class="btn" href="{% url consumers:reset_password %}">Сбросить пароль</a></div>
+    </form>
+</div>
+
+{% endif %}
+{% endblock %}

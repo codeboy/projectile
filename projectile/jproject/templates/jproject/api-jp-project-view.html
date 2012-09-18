@@ -1,0 +1,83 @@
+{% extends "baseapp/ba-base-minifed.html" %}
+{% load crispy_forms_tags %}
+
+
+{% block page-buttons %}
+    <div class="btn-group">
+        <a class="btn btn-large tip-bottom" data-original-title="Add to left panel"><i class="icon-heart"></i></a>
+        <a class="btn btn-large tip-bottom" data-original-title="Project Wiki"><i class="icon-book"></i></a>
+        <a class="btn btn-large tip-bottom" data-original-title="Manage Project Users"><i class="icon-user"></i></a>
+        <a class="btn btn-large tip-bottom" data-original-title="Edit Project"><i class="icon-cog"></i></a>
+
+    </div>
+    <script type="text/javascript">
+        $('.tip-bottom').tooltip({ placement:'bottom' });
+    </script>
+{% endblock %}
+
+{% block breadcrumbs %}
+    <div id="breadcrumb">
+        <a href="#" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a>
+        <a href="#projects" class="loader" data-turl="{% url api_projects_base %}"><i class="icon icon-list-alt"></i> <span>Projects</span></a>
+        <a href="#" class="current">{{ page_name }}</a>
+    </div>
+{% endblock %}
+
+{% block content %}
+
+<div class="row-fluid">
+    <div class="span12">
+        <div class="widget-box">
+{#            <div class="widget-title">#}
+{#                <span class="icon"><i class="icon-th-list"></i></span>#}
+{#                <h5>{{ page_name }}</h5>#}
+{#            </div>#}
+            <div class="widget-content">
+                <h3>{{ project.name }}</h3>
+                {{ project.description }}
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="row-fluid">
+    <div class="span12">
+        <div class="widget-box">
+            <div class="widget-title">
+                <span class="icon"><i class="icon-tasks"></i></span>
+                <h5>tasks</h5>
+            </div>
+            {% if task_list %}
+            <div class="widget-content nopadding">
+                <table class="table table-bordered table-striped table-condensed">
+                    <thead>
+                        <tr>
+                            <th>name</th>
+                            <th>Column name</th>
+                            <th>Column name</th>
+                            <th>Column name</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for i in task_list %}
+                        <tr>
+                            <td><a href="#project/{{ i.name_slug }}" class="loader" data-turl="{% url api_project_view i.name_slug %}">{{ i.name }}</a></td>
+                            <td>Row 2</td>
+                            <td>Row 3</td>
+                            <td>Row 4</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            {% else %}
+            <div class="widget-content">
+                This project has no tasks.
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}

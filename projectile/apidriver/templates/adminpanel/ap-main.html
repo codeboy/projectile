@@ -1,0 +1,141 @@
+{% extends "adminpanel/ap-base.html" %}
+
+{% block content %}
+<tr class="base">
+    <td class="menu">
+        <div id="menuList">
+
+            <h3><a href="#">Адреса</a></h3>
+            <div class="menu-root open">
+                <ul>
+                    <li data-tname="aaddress" data-turl="kladr/api/00000000000/1/">Адреса</li>
+                    <li data-tname="bbuildings" data-turl="house/api/">Список домов</li>
+                    <li data-tname="just_test" data-turl="{% url test_reload_tab %}">test for url api/test</li>
+                    <li data-tname="pagination_test" data-turl="{% url table_pagination %}">pagination test</li>
+                </ul>
+            </div>
+
+            <h3><a href="#">Сотрудники</a></h3>
+            <div class="menu-root open">
+                <ul>
+                    <li data-tname="Классификатор" data-turl="{% url providers:api_common_departments_list %}">Классификатор отделов и должностей</li>
+                    <li data-tname="tab6" data-turl="providers_stuff">Справочник отделов и должностей организации</li>
+                    <li data-tname="Пользователи" data-turl="{% url consumers:api_consumers_list %}">Список пользователей</li>
+
+                </ul>
+            </div>
+
+            <h3><a href="#">Организации</a></h3>
+            <div class="menu-root open">
+                <ul>
+                    <li data-tname="Организации" data-turl="{% url providers:api_provider_list %}">Список организаций</li>
+                    <li data-tname="address" data-turl="kladr/api/00000000000/1/">Адреса</li>
+                    <li data-tname="tab1" data-turl="dsdsd">Клиентская база"</li>
+                </ul>
+            </div>
+
+            <h3><a href="#">Журналы</a></h3>
+            <div class="menu-root open">
+                <ul>
+                    <li data-tname="Журнал_заявок" data-turl="{% url logrequest:api_requestlog_list %}">Журнал заявок</li>
+                </ul>
+            </div>
+
+            <h3><a href="#">Услуги системы</a></h3>
+            <div class="menu-root open">
+                <ul>
+                    <li data-tname="tab1" data-turl="dsdsd">Тарифы и услуги системы</li>
+                </ul>
+            </div>
+            <h3><a href="#">Тарифы</a></h3>
+            <div class="menu-root open">
+                <ul>
+                    <li data-tname="tab1" data-turl="dsdsd">Городские тарифы</li>
+                    <li data-tname="tab1" data-turl="dsdsd">Тарифы организации</li>
+                </ul>
+            </div>
+
+
+            <h3><a href="#">Обращения клиентов</a></h3>
+            <div class="menu-root open">
+                <ul>
+                    <li data-tname="tab1" data-turl="dsdsd">Техническая поддержка</li>
+                    <li data-tname="tab1" data-turl="dsdsd">Бухгалтерия</li>
+                    <li data-tname="tab1" data-turl="dsdsd">Юридическая поддержка</li>
+                </ul>
+            </div>
+
+            <h3><a href="#">Информационный канал</a></h3>
+            <div class="menu-root open">
+                <ul>
+                    <li data-tname="tab1" data-turl="dsdsd">Рассылки по потенциальным клиентам</li>
+                    <li data-tname="tab1" data-turl="dsdsd">Информационная рассылка по клиентам</li>
+                    <li data-tname="tab1" data-turl="dsdsd">Информационная специализированная рассылка по клиентам</li>
+                    <li data-tname="tab1" data-turl="dsdsd">Обращения клиентов</li>
+                    <li data-tname="tab1" data-turl="dsdsd">Рассылки клиентов</li>
+                    <li data-tname="tab1" data-turl="dsdsd">Обращения жильцов к клиентам</li>
+                </ul>
+            </div>
+
+            <h3><a href="#">Аналитика и статистика</a></h3>
+            <div class="menu-root open">
+                <ul>
+                    <li data-tname="tab1" data-turl="dsdsd">Потребление энергоресурсов</li>
+                    <li data-tname="tab1" data-turl="dsdsd">Статистика заявок</li>
+                    <li data-tname="tab1" data-turl="dsdsd">Статистика обращений жильцов</li>
+                    <li data-tname="tab1" data-turl="dsdsd">Распределение денежных средств жильцов</li>
+                    <li data-tname="tab1" data-turl="dsdsd">Клиентская база</li>
+                </ul>
+            </div>
+
+            <h3><a href="#">Платежи</a></h3>
+            <div class="menu-root open">
+                <ul>
+                    <li data-tname="tab1" data-turl="dsdsd">Платежи клиентов</li>
+                    <li data-tname="tab1" data-turl="dsdsd">Платежи жильцов</li>
+                </ul>
+            </div>
+
+            <h3><a href="#">Регистрация</a></h3>
+            <div class="menu-root open">
+                <ul>
+                    <li data-tname="Регистрация" data-turl="account/api/check/">Регистрация жильцов/сотрудников</li>
+                </ul>
+            </div>
+
+
+        </div>
+    </td>
+    <td class="center">
+        <table id="tabsContainer">
+            <tr class="tabslist"><td>
+
+                <ul class="tabListContainer">
+                    <!--<li class="closable active" data-tabname="welcome">Информация <i class="icon-remove"></i></li>-->
+                </ul>
+
+            </td></tr>
+            <tr class="tabBodyTr"><td>
+
+                <div id="tabBody">
+                    <ul id="listContetnTabs">
+                        <!--<li class="tb-el" id="tabname-welcome">
+                            <div class="item">
+                                <h3>Приветствуем вас!</h3>
+
+                                <h3>список изменений</h3>
+                                <ul>
+                                    <li>sdfsd</li>
+                                    <li>sdfsd</li>
+                                </ul>
+                            </div>
+                        </li>-->
+                    </ul>
+                </div>
+
+            </td></tr>
+        </table>
+
+    </td>
+</tr>
+{% endblock %}

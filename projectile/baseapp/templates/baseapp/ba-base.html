@@ -17,9 +17,6 @@
     <!-- Mobile viewport optimized: h5bp.com/viewport -->
     <meta name="viewport" content="width=device-width">
 
-    <!--<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}libs/css/bootstrap/style.css" />
-    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}/css/ba-base.css" />-->
-
     <link rel="stylesheet" href="{{ STATIC_URL }}libs/bootstrap/bootstrap.ref.css" />
     <link rel="stylesheet" href="{{ STATIC_URL }}libs/bootstrap/bootstrap-responsive.min.css" />
     <link rel="stylesheet" href="{{ STATIC_URL }}libs/unicorn/unicorn.main.css" />
@@ -66,9 +63,6 @@
     </div>
 
 
-    {#<div id="style-switcher">{% include 'baseapp/ba-inc-slyleswitcher.html' %}</div>#}
-
-
     <div id="content">
         <div id="content-header">
             {% block page-title %}
@@ -102,7 +96,14 @@
         {% endif %}
 
 
+
         <div class="container-fluid">
+
+{#            <div class="row-fluid">#}
+{#                <div class="span12" id="alert-container"></div>#}
+{#            </div>#}
+
+            <div id="content-container">
             {% block content %}
 
             <div class="row-fluid">
@@ -123,13 +124,16 @@
             </div>
 
             {% endblock %}
+            </div>
 
 
             {% include 'baseapp/ba-inc-footer.html' %}
+
         </div>
     </div>
-
-
+<div style="display:none">
+    <input id="csrf-token" type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}"/>
+</div>
 
 <div id="alert-container"></div>
 
@@ -139,6 +143,8 @@
 
 <script src="{{ STATIC_URL }}libs/bootstrap/bootstrap.min.js"></script>
 <script src="{{ STATIC_URL }}libs/unicorn/unicorn.js"></script>
+
+<script src="{{ STATIC_URL }}api/js/api-base.js"></script>
 <!-- end scripts -->
 
 </body>
