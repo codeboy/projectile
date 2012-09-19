@@ -36,6 +36,11 @@ class Project(models.Model):
         null=False, blank=False,
         verbose_name='Короткое описание',
         help_text='короткое описание',)
+    logo = models.CharField(
+        max_length=100,
+        verbose_name=_('Project logo'),
+        default='ballon.png',
+    )
 
     datetime_created = models.DateTimeField(
         default=datetime.datetime.now,

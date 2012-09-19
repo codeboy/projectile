@@ -8,6 +8,7 @@
 #header h1 {
     height:35px;
     background: url("/static/img/logo2.png") no-repeat scroll 0 0 transparent;
+    opacity:100;
 }
 
 #content-header {
@@ -31,6 +32,9 @@
 .container-fluid .row-fluid:first-child {margin-top:7px;}
 .widget-box {
     margin-top:5px; margin-bottom:5px;
+}
+.widget-content {
+    padding: 9px 11px;
 }
 .container-fluid {
     padding-left:10px;
@@ -62,6 +66,40 @@
 	background-image: -o-linear-gradient(top, #333333 0%, #3F3F3F 100%);
 	background-image: linear-gradient(top, #333333 0%, #3F3F3F 100%);
 }
+
+
+
+.stat-boxes, .quick-actions, .quick-actions-horizontal, .stats-plain {
+    margin: 4px 0 4px;
+    text-align:left;
+}
+.stat-boxes li, .quick-actions li, .quick-actions-horizontal li {
+    margin: 0 4px 4px;
+}
+.quick-actions-horizontal li a span {
+    padding:6px 8px 6px 6px;
+}
+.quick-actions-horizontal li a i[class^="icon-"], .quick-actions-horizontal li a i[class*=" icon-"] {
+    padding: 7px;
+}
+
+.quick-actions-horizontal i.icon-calendar {
+    background-image:url('/static/img/icons/16/calendar.png');
+}
+.quick-actions-horizontal i.icon-milestone {
+    background-image:url('/static/img/icons/16/milestone.png');
+}
+.quick-actions-horizontal i.icon-book_open {
+    background-image:url('/static/img/icons/16/book_open.png');
+}
+.quick-actions-horizontal i.icon-legend {
+    background-image:url('/static/img/icons/16/legend.png');
+}
+.quick-actions-horizontal i.icon-chart_organisation {
+    background-image:url('/static/img/icons/16/chart_organisation.png');
+}
+
+
 
 
 /* Loading indicator
@@ -136,6 +174,7 @@ li.btn-quicktask {
     font-weight:bold;
 }
 #user-nav > ul > li.btn-quicktask > a > i {
+    /*opacity:0.7;*/
     /*background-image:url("/static/img/glyphicons-halflings-green.png")*/
     /*background-image:url("/static/img/glyphicons-halflings-orange.png")*/
     /*background-image:url("/static/img/glyphicons-halflings-orange-light.png")*/
@@ -143,4 +182,13 @@ li.btn-quicktask {
     /*background-image:url("/static/img/glyphicons-halflings-yellow.png")*/
     background-image:url("/static/img/glyphicons-halflings-yellow-light.png")
     /*background-image:url("/static/img/glyphicons-halflings-magenta-light.png")*/
+}
+
+.navbar-user {
+    background-position:0, 0;
+    /*opacity:1;*/
+    padding-right:5px;
+}
+.navbar-user:hover {
+    opacity:1;
 }

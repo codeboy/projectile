@@ -7,8 +7,11 @@
     <li class="btn btn-mini btn-inverse btn-quicktask">
         <a title="" href="#"><i class="icon icon-plus"></i> <span class="text">Add Task</span></a>
     </li>
-    <li class="btn btn-inverse"><a title="" href="#"><i class="icon icon-user"></i> <span
-            class="text">{{ user.username }} </span></a></li>
+    <li class="btn btn-inverse"><a title="" href="#">
+        <i class="icon icon-user navbar-user"
+           style="
+           background-image:url('/static/img/icons/users/16/user_batman.png');"></i>
+        <span class="text">{{ user.username }} </span></a></li>
     <li class="btn btn-inverse dropdown" id="menu-messages"><a href="#" data-toggle="dropdown"
                                                                data-target="#menu-messages" class="dropdown-toggle"><i
             class="icon icon-envelope"></i> <span class="text">Messages</span> <span

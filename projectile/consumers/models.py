@@ -13,6 +13,11 @@ class ConsumerProfile(models.Model):
     activate = models.BooleanField(verbose_name=_('Activated'),
                                    default=False)
     skype = models.CharField(_('skype'), max_length=50, blank=True)
+    logo = models.CharField(
+        max_length=100,
+        verbose_name=_('Project logo'),
+        default='user.png',
+    )
 
 
     class Meta:

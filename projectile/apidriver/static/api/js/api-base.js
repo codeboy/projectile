@@ -162,7 +162,7 @@ BaseApp = function(){
      */
     this.getScript = function(script){
         $.ajax({
-            url: '/static/ap/js/'+script,
+            url: '/static/'+script,
             dataType: "script",
             success: function(data, textStatus, jqxhr){
             },

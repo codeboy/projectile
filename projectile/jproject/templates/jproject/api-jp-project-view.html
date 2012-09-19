@@ -8,18 +8,14 @@
         <a class="btn btn-large tip-bottom" data-original-title="Project Wiki"><i class="icon-book"></i></a>
         <a class="btn btn-large tip-bottom" data-original-title="Manage Project Users"><i class="icon-user"></i></a>
         <a class="btn btn-large tip-bottom" data-original-title="Edit Project"><i class="icon-cog"></i></a>
-
     </div>
-    <script type="text/javascript">
-        $('.tip-bottom').tooltip({ placement:'bottom' });
-    </script>
 {% endblock %}
 
 {% block breadcrumbs %}
     <div id="breadcrumb">
         <a href="#" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a>
         <a href="#projects" class="loader" data-turl="{% url api_projects_base %}"><i class="icon icon-list-alt"></i> <span>Projects</span></a>
-        <a href="#" class="current">{{ page_name }}</a>
+        <a href="#" class="current"><img src="/static/img/icons/projects/16/{{ project.logo }}" alt="" style="margin-right:4px;">{{ page_name }}</a>
     </div>
 {% endblock %}
 
@@ -33,8 +29,63 @@
 {#                <h5>{{ page_name }}</h5>#}
 {#            </div>#}
             <div class="widget-content">
-                <h3>{{ project.name }}</h3>
-                {{ project.description }}
+                <div class="row-fluid">
+                    <div class="span7">
+                        <h2><img src="/static/img/icons/projects/32/{{ project.logo }}" alt="" style="margin-right:10px;">{{ project.name }}</h2>
+                        <p style="padding-left:40px;">{{ project.description }}</p>
+                    </div>
+
+                    <div class="span2 left" style="text-align: left;">
+                        <ul class="quick-actions-horizontal">
+                            <li>
+                                <a href="#"><i class="icon-calendar"></i>
+                                <span>Planning&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></a>
+                            </li>
+                            <li>
+                                <a href="#"><i class="icon-milestone"></i>
+                                <span>Milestones&nbsp;&nbsp;&nbsp;</span></a>
+                            </li>
+                            <li>
+                                <a href="#"><i class="icon-legend"></i>
+                                <span>Components</span></a>
+                            </li>
+                            <li>
+                                <a href="#"><i class="icon-chart_organisation"></i>
+                                <span>Workflow&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="span3">
+                        <ul class="stat-boxes">
+                            <li>
+                                <div class="left peity_bar_neutral">
+                                    <span>
+                                        <span style="display: none; ">2,4,9,7,12,10,12, 5, 4, 3, 6</span>
+                                        <canvas width="50" height="24"></canvas>
+                                    </span>&nbsp;
+                                </div>
+                                <div class="right">
+                                    <strong>72</strong>
+                                    all tasks
+                                </div>
+                            </li>
+                            <li>
+                                <div class="left peity_bar_neutral">
+                                    <span>
+                                        <span style="display: none; ">2,10,0,7,1,6,1</span>
+                                        <canvas width="50" height="24"></canvas>
+                                    </span>&nbsp;
+                                </div>
+                                <div class="right">
+                                    <strong>36</strong>progress
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+
             </div>
         </div>
     </div>
@@ -80,4 +131,5 @@
     </div>
 </div>
 
+<script src="static/jproject/js/jp-task-list.js"></script>
 {% endblock %}

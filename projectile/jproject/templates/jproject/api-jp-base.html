@@ -39,7 +39,10 @@
                     <tbody>
                         {% for i in list %}
                         <tr>
-                            <td><a href="#project/{{ i.name_slug }}" class="loader" data-turl="{% url api_project_view i.name_slug %}">{{ i.name }}</a></td>
+                            <td>
+                                <img src="/static/img/icons/projects/16/{{ i.logo }}" alt="" style="margin-right:4px;">
+                                <a href="#project/{{ i.name_slug }}" class="loader" data-turl="{% url api_project_view i.name_slug %}">{{ i.name }}</a>
+                            </td>
                             <td>Row 2</td>
                             <td>Row 3</td>
                             <td>Row 4</td>

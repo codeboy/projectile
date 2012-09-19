@@ -19,7 +19,7 @@ class ProjectApi(BaseApi):
 
         resp_template = 'baseapp/api-test.html'
 #        resp_type = 'tpl'
-#        resp_script = 'ap-test.js'
+#        resp_script = 'jproject/js/jp-task-list.js'
         resp_message = 'good'
         resp_success = True
 
