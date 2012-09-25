@@ -77,20 +77,33 @@ BaseApp = function(){
 
     /**
      * load actual content based on page url
+     * page urls temporary stored in menu tpl (ba-inc-menu.html)
      */
     this.starterLoadContent = function(){
+        var url = 'api-test/test';
         var urls = baseApp.$urlList;
         var current_url = baseApp.$currentUrl;
         current_url = current_url.substr(1);
-        if (current_url in urls){
-            console.log('load content for - ', current_url);
-            var turl = urls[current_url];
-            var callback = function(data) {
-                baseApp.reloadContent(data.data);
+
+        var current_url_array = current_url.split('/');
+        current_url = current_url_array[0];
+
+        if (current_url_array.length > 1) {
+            if (current_url_array[0] == 'project') {
+                url = '/api-project/project/'+current_url_array[1];
+                baseApp.makeMenuActive('projects');
+            }
+        } else {
+            if (current_url in urls){
+                console.log('load content for - ', current_url);
+                url = urls[current_url];
                 baseApp.makeMenuActive(current_url);
-            };
-            var r_data = baseApp.getContent(turl, callback);
+            }
         }
+        var callback = function(data) {
+            baseApp.reloadContent(data.data);
+        };
+        var r_data = baseApp.getContent(url, callback);
     };
 
 
@@ -135,12 +148,11 @@ BaseApp = function(){
     this.contentLoader = function() {
         var me = $(event.target);
         var me_tag = String(me.prop("tagName").toLowerCase());
-        console.log(me_tag);
         if (me_tag == 'span'){
             me = me.parent();
         }
         var me_turl = me.data('turl');
-        console.log(me_turl);
+        console.log('me_turl', me_turl);
 
         var callback = function(data) {
             baseApp.reloadContent(data.data);
@@ -178,6 +190,7 @@ BaseApp = function(){
     };
 
 
+    // ! deprecated
     this.testAjax = function(){
         $.ajax({
             url: 'api/testajax/',
@@ -275,6 +288,7 @@ BaseApp = function(){
         //$('div#alert-container').append(alertWindow);
     };
 
+    // deprecated
     this.paginationNext = function(){
         var me = $(this);
         console.log(me);
@@ -283,7 +297,7 @@ BaseApp = function(){
         }
         var data = baseApp.getTabContent(turl, create);
     };
-
+    // deprecated
     this.paginationPrev = function(){
         console.log($(this));
     }
