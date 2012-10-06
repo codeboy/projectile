@@ -19,6 +19,7 @@
     font-size:22px;
 }
 .widget-title {height:30px;}
+.widget-title .buttons {margin:4px 10px 0 0;}
 .widget-title span.icon, .widget-title h5 {
     padding: 7px 10px 5px;
 }
@@ -68,6 +69,12 @@
 }
 
 
+/*.project-quickactions-mini {width:130px; margin:0;}*/
+.project-quickactions-mini UL {text-align:center;}
+.project-quickactions-mini LI {width:123px;}
+.project-quickactions-big UL {text-align:center}
+/*.project-quickactions-big {width:175px; margin:0;}*/
+.project-quickactions-big LI {width:161px;}
 
 .stat-boxes, .quick-actions, .quick-actions-horizontal, .stats-plain {
     margin: 4px 0 4px;
@@ -83,7 +90,7 @@
     padding: 7px;
 }
 
-.quick-actions-horizontal i.icon-calendar {
+.quick-actions-horizontal i.icon-calendar2 {
     background-image:url('/static/img/icons/16/calendar.png');
 }
 .quick-actions-horizontal i.icon-milestone {

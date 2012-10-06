@@ -69,6 +69,23 @@ class ProjectApi(BaseApi):
         return self.create_response(res_data=render_data)
 
 
+    def add_task(self, request, project_name):
+            """
+            add task in project
+            """
+            template = 'jproject/api-jp-project-view.html'
+            data = dict()
+            q = Project.objects.get(name_slug = project_name)
+            data['project'] = q
+            data['page_name'] = q.name
+
+            task_list = Task.objects.filter(project = q)
+            data['task_list'] = task_list
+            render_data = render_to_string(template, data)
+
+            return self.create_response(res_data=render_data)
+
+
     def test_reload_tab(self, request):
         """
         перезагрузка вкладки
